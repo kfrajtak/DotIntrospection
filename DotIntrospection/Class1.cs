@@ -27,12 +27,10 @@ namespace DotIntrospection
             var workspace = MSBuildWorkspace.Create();
             var solution = workspace.OpenSolutionAsync(solutionUrl).Result;
             var projectGraph = solution.GetProjectDependencyGraph();
-            Dictionary<string, Stream> assemblies = new Dictionary<string, Stream>();
-
             var projects = projectGraph.GetTopologicallySortedProjects();
-            if (!projectGraph.GetTopologicallySortedProjects().Any())
+            if (!projects.Any())
             {
-                System.Console.WriteLine($"{projects.Count()} projects :(");
+                Console.WriteLine($"{projects.Count()} projects :(");
                 return false;
             }
 
