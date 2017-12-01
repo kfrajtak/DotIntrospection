@@ -32,7 +32,7 @@ namespace DotIntrospection
             var projects = projectGraph.GetTopologicallySortedProjects();
             if (!projectGraph.GetTopologicallySortedProjects().Any())
             {
-                System.Console.WriteLine(projects.Count());
+                System.Console.WriteLine($"{projects.Count()} projects :(");
                 return false;
             }
 
