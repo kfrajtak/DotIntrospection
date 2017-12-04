@@ -24,8 +24,18 @@ namespace DotIntrospection
         {
             bool success = true;
 
+            // [Failure] Cannot open project '*.csproj' because the language 'C#' is not supported.
+            // https://stackoverflow.com/questions/30601934/using-an-adhocworkspace-results-in-the-language-c-is-not-supported
+            var _ = typeof(Microsoft.CodeAnalysis.CSharp.Formatting.CSharpFormattingOptions);
+
             var workspace = MSBuildWorkspace.Create();
             var solution = workspace.OpenSolutionAsync(solutionUrl).Result;
+            if (workspace.Diagnostics.Any())
+            {
+                Console.WriteLine(string.Join(Environment.NewLine, workspace.Diagnostics));
+                return false;
+            }
+
             var projectGraph = solution.GetProjectDependencyGraph();
             var projects = projectGraph.GetTopologicallySortedProjects();
             if (!projects.Any())

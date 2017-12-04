@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace DotIntrospection.Console
 {
@@ -11,7 +7,7 @@ namespace DotIntrospection.Console
     {
         static void Main(string[] args)
         {
-            string solutionUrl = @"C:\Work\bitbucket\DotIntrospection\DotIntrospection.sln";
+            string solutionUrl = @"C:\Temp\mvp\DotIntrospection\DotIntrospection.sln";
             string outputDir = @"";
 
             try
@@ -41,7 +37,6 @@ namespace DotIntrospection.Console
             {
                 System.Console.WriteLine(e);
             }
-            
         }
     }
 }
